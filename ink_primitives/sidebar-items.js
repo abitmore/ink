@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Key","Key into contract storage."],["KeyPtr","A key pointer."]]});
+window.SIDEBAR_ITEMS = {"enum":["LangError"],"mod":["contract","reflect","types"],"struct":["H160","H256","KeyComposer","U256"],"type":["ConstructorResult","Key","MessageResult"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["generate_code","generate_type_spec"],"mod":["reflect"],"trait":["CodeGenerator"]};

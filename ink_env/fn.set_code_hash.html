@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Replace the contract code at the specified address with new code."><title>set_code_hash in ink_env - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="ink_env" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0-nightly (cbfdf0b01 2025-03-13)" data-channel="nightly" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../static.files/storage-d8ac8691.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://use.ink/crate-docs/favicon.png"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><a class="logo-container" href="../ink_env/index.html"><img src="https://use.ink/img/crate-docs/logo.png" alt=""></a></nav><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../ink_env/index.html"><img src="https://use.ink/img/crate-docs/logo.png" alt="logo"></a><h2><a href="../ink_env/index.html">ink_env</a><span class="version">6.0.0-alpha</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">set_<wbr>code_<wbr>hash</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#note" title="Note">Note</a></li><li><a href="#errors" title="Errors">Errors</a></li><li><a href="#storage-compatibility" title="Storage Compatibility">Storage Compatibility</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate ink_<wbr>env</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">ink_env</a></div><h1>Function <span class="fn">set_code_hash</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/ink_env/api.rs.html#798-803">Source</a> </span></div><pre class="rust item-decl"><code>pub fn set_code_hash&lt;E&gt;(code_hash: &amp;H256) -&gt; <a class="type" href="type.Result.html" title="type ink_env::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;<div class="where">where
+    E: <a class="trait" href="trait.Environment.html" title="trait ink_env::Environment">Environment</a>,</div></code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Replace the contract code at the specified address with new code.</p>
+<h2 id="note"><a class="doc-anchor" href="#note">§</a>Note</h2>
+<p>There are a few important considerations which must be taken into account when
+using this API:</p>
+<ol>
+<li>The storage at the code hash will remain untouched.</li>
+</ol>
+<p>Contract developers <strong>must ensure</strong> that the storage layout of the new code is
+compatible with that of the old code.</p>
+<ol start="2">
+<li>The contract address (<code>AccountId</code>) remains the same, while the <code>code_hash</code> changes.</li>
+</ol>
+<p>Contract addresses are initially derived from <code>hash(deploying_address ++ code_hash ++ salt)</code>. This makes it possible to determine a contracts address (<code>AccountId</code>) using
+the <code>code_hash</code> of the <em>initial</em> code used to instantiate the contract.</p>
+<p>However, because <code>set_code_hash</code> can modify the underlying <code>code_hash</code> of a contract,
+it should not be relied upon that a contracts address can always be derived from its
+stored <code>code_hash</code>.</p>
+<ol start="3">
+<li>Re-entrant calls use new <code>code_hash</code>.</li>
+</ol>
+<p>If a contract calls into itself after changing its code the new call would use the new
+code. However, if the original caller panics after returning from the sub call it
+would revert the changes made by <code>set_code_hash</code> and the next caller would use the old
+code.</p>
+<h2 id="errors"><a class="doc-anchor" href="#errors">§</a>Errors</h2>
+<p>todo: this enum variant no longer exists
+<code>ReturnCode::CodeNotFound</code> in case the supplied <code>code_hash</code> cannot be found on-chain.</p>
+<h2 id="storage-compatibility"><a class="doc-anchor" href="#storage-compatibility">§</a>Storage Compatibility</h2>
+<p>When the smart contract code is modified,
+it is important to observe an additional virtual restriction
+that is imposed on this procedure:
+you should not change the order in which the contract state variables
+are declared, nor their type.</p>
+<p>Violating the restriction will not prevent a successful compilation,
+but will result in the mix-up of values or failure to read the storage correctly.
+This can result in severe errors in the application utilizing the contract.</p>
+<p>If the storage of your contract looks like this:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[ink(storage)]
+</span><span class="kw">pub struct </span>YourContract {
+    x: u32,
+    y: bool,
+}</code></pre></div>
+<p>The procedures listed below will make it invalid:</p>
+<p>Changing the order of variables:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[ink(storage)]
+</span><span class="kw">pub struct </span>YourContract {
+    y: bool,
+    x: u32,
+}</code></pre></div>
+<p>Removing existing variable:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[ink(storage)]
+</span><span class="kw">pub struct </span>YourContract {
+    x: u32,
+}</code></pre></div>
+<p>Changing type of a variable:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[ink(storage)]
+</span><span class="kw">pub struct </span>YourContract {
+    x: u64,
+    y: bool,
+}</code></pre></div>
+<p>Introducing a new variable before any of the existing ones:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[ink(storage)]
+</span><span class="kw">pub struct </span>YourContract {
+    z: Vec&lt;u32&gt;,
+    x: u32,
+    y: bool,
+}</code></pre></div>
+<p>Please refer to the
+<a href="https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable#modifying-your-contracts">Open Zeppelin docs</a>
+for more details and examples.</p>
+</div></details></section></div></main></body></html>
