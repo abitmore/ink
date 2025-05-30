@@ -106,10 +106,10 @@
 <a href=#106 id=106 data-nosnippet>106</a>
 <a href=#107 id=107 data-nosnippet>107</a>            <span class="macro">quote!</span> {
 <a href=#108 id=108 data-nosnippet>108</a>                ::ink::metadata::sol::EventParamMetadata {
-<a href=#109 id=109 data-nosnippet>109</a>                    name: #name,
-<a href=#110 id=110 data-nosnippet>110</a>                    ty: #sol_ty,
+<a href=#109 id=109 data-nosnippet>109</a>                    name: #name.into(),
+<a href=#110 id=110 data-nosnippet>110</a>                    ty: #sol_ty.into(),
 <a href=#111 id=111 data-nosnippet>111</a>                    is_topic: #is_topic,
-<a href=#112 id=112 data-nosnippet>112</a>                    docs: #docs,
+<a href=#112 id=112 data-nosnippet>112</a>                    docs: #docs.into(),
 <a href=#113 id=113 data-nosnippet>113</a>                }
 <a href=#114 id=114 data-nosnippet>114</a>            }
 <a href=#115 id=115 data-nosnippet>115</a>        });
@@ -129,10 +129,10 @@
 <a href=#129 id=129 data-nosnippet>129</a>                #[linkme(<span class="kw">crate </span>= ::ink::linkme)]
 <a href=#130 id=130 data-nosnippet>130</a>                </span><span class="kw">static </span>EVENT_METADATA_SOL: <span class="kw">fn</span>() -&gt; ::ink::metadata::sol::EventMetadata = || {
 <a href=#131 id=131 data-nosnippet>131</a>                    ::ink::metadata::sol::EventMetadata {
-<a href=#132 id=132 data-nosnippet>132</a>                        name: #name,
+<a href=#132 id=132 data-nosnippet>132</a>                        name: #name.into(),
 <a href=#133 id=133 data-nosnippet>133</a>                        is_anonymous: #is_anonymous,
 <a href=#134 id=134 data-nosnippet>134</a>                        params: <span class="macro">vec!</span>[ #( #params ),* ],
-<a href=#135 id=135 data-nosnippet>135</a>                        docs: #docs,
+<a href=#135 id=135 data-nosnippet>135</a>                        docs: #docs.into(),
 <a href=#136 id=136 data-nosnippet>136</a>                    }
 <a href=#137 id=137 data-nosnippet>137</a>                };
 <a href=#138 id=138 data-nosnippet>138</a>            };
