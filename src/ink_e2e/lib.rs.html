@@ -155,28 +155,41 @@
 <a href=#155 id=155 data-nosnippet>155</a><span class="doccomment">/// Creates a call builder for `Contract`, based on an account id.
 <a href=#156 id=156 data-nosnippet>156</a></span><span class="kw">pub fn </span>create_call_builder&lt;Contract&gt;(
 <a href=#157 id=157 data-nosnippet>157</a>    acc_id: Address,
-<a href=#158 id=158 data-nosnippet>158</a>) -&gt; &lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type
+<a href=#158 id=158 data-nosnippet>158</a>) -&gt; &lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;ink::env::DefaultAbi&gt;
 <a href=#159 id=159 data-nosnippet>159</a><span class="kw">where
 <a href=#160 id=160 data-nosnippet>160</a>    </span>&lt;Contract <span class="kw">as </span>ContractEnv&gt;::Env: Environment,
-<a href=#161 id=161 data-nosnippet>161</a>    Contract: ContractCallBuilder,
-<a href=#162 id=162 data-nosnippet>162</a>    Contract: ContractEnv,
-<a href=#163 id=163 data-nosnippet>163</a>    Contract::Type: FromAddr,
-<a href=#164 id=164 data-nosnippet>164</a>{
-<a href=#165 id=165 data-nosnippet>165</a>    &lt;&lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type <span class="kw">as </span>FromAddr&gt;::from_addr(acc_id)
-<a href=#166 id=166 data-nosnippet>166</a>}
-<a href=#167 id=167 data-nosnippet>167</a>
-<a href=#168 id=168 data-nosnippet>168</a><span class="kw">fn </span>balance_to_deposit_limit&lt;E: Environment&gt;(
-<a href=#169 id=169 data-nosnippet>169</a>    b: &lt;E <span class="kw">as </span>Environment&gt;::Balance,
-<a href=#170 id=170 data-nosnippet>170</a>) -&gt; DepositLimit&lt;&lt;E <span class="kw">as </span>Environment&gt;::Balance&gt; {
-<a href=#171 id=171 data-nosnippet>171</a>    DepositLimit::Balance(b)
-<a href=#172 id=172 data-nosnippet>172</a>}
-<a href=#173 id=173 data-nosnippet>173</a>
-<a href=#174 id=174 data-nosnippet>174</a><span class="kw">fn </span>deposit_limit_to_balance&lt;E: Environment&gt;(
-<a href=#175 id=175 data-nosnippet>175</a>    l: DepositLimit&lt;&lt;E <span class="kw">as </span>Environment&gt;::Balance&gt;,
-<a href=#176 id=176 data-nosnippet>176</a>) -&gt; &lt;E <span class="kw">as </span>Environment&gt;::Balance {
-<a href=#177 id=177 data-nosnippet>177</a>    <span class="kw">match </span>l {
-<a href=#178 id=178 data-nosnippet>178</a>        DepositLimit::Balance(l) =&gt; l,
-<a href=#179 id=179 data-nosnippet>179</a>        <span class="comment">// todo
-<a href=#180 id=180 data-nosnippet>180</a>        </span>DepositLimit::Unchecked =&gt; <span class="macro">panic!</span>(<span class="string">"`Unchecked` is not supported"</span>),
-<a href=#181 id=181 data-nosnippet>181</a>    }
-<a href=#182 id=182 data-nosnippet>182</a>}</code></pre></div></section></main></body></html>
+<a href=#161 id=161 data-nosnippet>161</a>    Contract: ContractCallBuilder + ContractEnv,
+<a href=#162 id=162 data-nosnippet>162</a>    &lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;ink::env::DefaultAbi&gt;: FromAddr,
+<a href=#163 id=163 data-nosnippet>163</a>{
+<a href=#164 id=164 data-nosnippet>164</a>    &lt;&lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;ink::env::DefaultAbi&gt; <span class="kw">as </span>FromAddr&gt;::from_addr(
+<a href=#165 id=165 data-nosnippet>165</a>        acc_id,
+<a href=#166 id=166 data-nosnippet>166</a>    )
+<a href=#167 id=167 data-nosnippet>167</a>}
+<a href=#168 id=168 data-nosnippet>168</a>
+<a href=#169 id=169 data-nosnippet>169</a><span class="doccomment">/// Creates a call builder for `Contract` for the specified ABI, based on an account id.
+<a href=#170 id=170 data-nosnippet>170</a></span><span class="kw">pub fn </span>create_call_builder_abi&lt;Contract, Abi&gt;(
+<a href=#171 id=171 data-nosnippet>171</a>    acc_id: Address,
+<a href=#172 id=172 data-nosnippet>172</a>) -&gt; &lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;Abi&gt;
+<a href=#173 id=173 data-nosnippet>173</a><span class="kw">where
+<a href=#174 id=174 data-nosnippet>174</a>    </span>&lt;Contract <span class="kw">as </span>ContractEnv&gt;::Env: Environment,
+<a href=#175 id=175 data-nosnippet>175</a>    Contract: ContractCallBuilder + ContractEnv,
+<a href=#176 id=176 data-nosnippet>176</a>    &lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;Abi&gt;: FromAddr,
+<a href=#177 id=177 data-nosnippet>177</a>{
+<a href=#178 id=178 data-nosnippet>178</a>    &lt;&lt;Contract <span class="kw">as </span>ContractCallBuilder&gt;::Type&lt;Abi&gt; <span class="kw">as </span>FromAddr&gt;::from_addr(acc_id)
+<a href=#179 id=179 data-nosnippet>179</a>}
+<a href=#180 id=180 data-nosnippet>180</a>
+<a href=#181 id=181 data-nosnippet>181</a><span class="kw">fn </span>balance_to_deposit_limit&lt;E: Environment&gt;(
+<a href=#182 id=182 data-nosnippet>182</a>    b: &lt;E <span class="kw">as </span>Environment&gt;::Balance,
+<a href=#183 id=183 data-nosnippet>183</a>) -&gt; DepositLimit&lt;&lt;E <span class="kw">as </span>Environment&gt;::Balance&gt; {
+<a href=#184 id=184 data-nosnippet>184</a>    DepositLimit::Balance(b)
+<a href=#185 id=185 data-nosnippet>185</a>}
+<a href=#186 id=186 data-nosnippet>186</a>
+<a href=#187 id=187 data-nosnippet>187</a><span class="kw">fn </span>deposit_limit_to_balance&lt;E: Environment&gt;(
+<a href=#188 id=188 data-nosnippet>188</a>    l: DepositLimit&lt;&lt;E <span class="kw">as </span>Environment&gt;::Balance&gt;,
+<a href=#189 id=189 data-nosnippet>189</a>) -&gt; &lt;E <span class="kw">as </span>Environment&gt;::Balance {
+<a href=#190 id=190 data-nosnippet>190</a>    <span class="kw">match </span>l {
+<a href=#191 id=191 data-nosnippet>191</a>        DepositLimit::Balance(l) =&gt; l,
+<a href=#192 id=192 data-nosnippet>192</a>        <span class="comment">// todo
+<a href=#193 id=193 data-nosnippet>193</a>        </span>DepositLimit::Unchecked =&gt; <span class="macro">panic!</span>(<span class="string">"`Unchecked` is not supported"</span>),
+<a href=#194 id=194 data-nosnippet>194</a>    }
+<a href=#195 id=195 data-nosnippet>195</a>}</code></pre></div></section></main></body></html>

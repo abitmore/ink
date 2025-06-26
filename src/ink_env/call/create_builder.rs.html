@@ -15,9 +15,9 @@
 <a href=#15 id=15 data-nosnippet>15</a></span><span class="kw">use </span>core::marker::PhantomData;
 <a href=#16 id=16 data-nosnippet>16</a>
 <a href=#17 id=17 data-nosnippet>17</a><span class="kw">use </span>ink_primitives::{
-<a href=#18 id=18 data-nosnippet>18</a>    reflect::{
+<a href=#18 id=18 data-nosnippet>18</a>    abi::{
 <a href=#19 id=19 data-nosnippet>19</a>        AbiEncodeWith,
-<a href=#20 id=20 data-nosnippet>20</a>        ScaleEncoding,
+<a href=#20 id=20 data-nosnippet>20</a>        Ink,
 <a href=#21 id=21 data-nosnippet>21</a>    },
 <a href=#22 id=22 data-nosnippet>22</a>    Address,
 <a href=#23 id=23 data-nosnippet>23</a>    H256,
@@ -192,7 +192,7 @@
 <a href=#192 id=192 data-nosnippet>192</a>    /// todo: is this correct? or is the value here `U256`?
 <a href=#193 id=193 data-nosnippet>193</a>    </span>endowment: U256,
 <a href=#194 id=194 data-nosnippet>194</a>    <span class="doccomment">/// The input data for the instantiation.
-<a href=#195 id=195 data-nosnippet>195</a>    </span>exec_input: ExecutionInput&lt;Args, ScaleEncoding&gt;,
+<a href=#195 id=195 data-nosnippet>195</a>    </span>exec_input: ExecutionInput&lt;Args, Ink&gt;,
 <a href=#196 id=196 data-nosnippet>196</a>    <span class="doccomment">/// The salt for determining the hash for the contract account ID.
 <a href=#197 id=197 data-nosnippet>197</a>    </span>salt_bytes: <span class="prelude-ty">Option</span>&lt;[u8; <span class="number">32</span>]&gt;,
 <a href=#198 id=198 data-nosnippet>198</a>    <span class="doccomment">/// The return type of the target contract's constructor method.
@@ -219,7 +219,7 @@
 <a href=#219 id=219 data-nosnippet>219</a>
 <a href=#220 id=220 data-nosnippet>220</a>    <span class="doccomment">/// The raw encoded input data.
 <a href=#221 id=221 data-nosnippet>221</a>    </span><span class="attr">#[inline]
-<a href=#222 id=222 data-nosnippet>222</a>    </span><span class="kw">pub fn </span>exec_input(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ExecutionInput&lt;Args, ScaleEncoding&gt; {
+<a href=#222 id=222 data-nosnippet>222</a>    </span><span class="kw">pub fn </span>exec_input(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>ExecutionInput&lt;Args, Ink&gt; {
 <a href=#223 id=223 data-nosnippet>223</a>        <span class="kw-2">&amp;</span><span class="self">self</span>.exec_input
 <a href=#224 id=224 data-nosnippet>224</a>    }
 <a href=#225 id=225 data-nosnippet>225</a>
@@ -275,7 +275,7 @@
 <a href=#275 id=275 data-nosnippet>275</a>        <span class="kw">crate</span>::reflect::ContractConstructorDecoder,
 <a href=#276 id=276 data-nosnippet>276</a>    &lt;ContractRef <span class="kw">as </span><span class="kw">crate</span>::ContractReverseReference&gt;::Type:
 <a href=#277 id=277 data-nosnippet>277</a>        <span class="kw">crate</span>::reflect::ContractMessageDecoder,
-<a href=#278 id=278 data-nosnippet>278</a>    Args: AbiEncodeWith&lt;ScaleEncoding&gt;,
+<a href=#278 id=278 data-nosnippet>278</a>    Args: AbiEncodeWith&lt;Ink&gt;,
 <a href=#279 id=279 data-nosnippet>279</a>    R: ConstructorReturnType&lt;ContractRef&gt;,
 <a href=#280 id=280 data-nosnippet>280</a>{
 <a href=#281 id=281 data-nosnippet>281</a>    <span class="doccomment">/// todo
@@ -441,7 +441,7 @@
 <a href=#441 id=441 data-nosnippet>441</a>    &lt;ContractRef <span class="kw">as </span>ContractEnv&gt;::Env,
 <a href=#442 id=442 data-nosnippet>442</a>    ContractRef,
 <a href=#443 id=443 data-nosnippet>443</a>    Set&lt;LimitParamsV2&gt;,
-<a href=#444 id=444 data-nosnippet>444</a>    Unset&lt;ExecutionInput&lt;EmptyArgumentList&lt;ScaleEncoding&gt;, ScaleEncoding&gt;&gt;,
+<a href=#444 id=444 data-nosnippet>444</a>    Unset&lt;ExecutionInput&lt;EmptyArgumentList&lt;Ink&gt;, Ink&gt;&gt;,
 <a href=#445 id=445 data-nosnippet>445</a>    Unset&lt;ReturnType&lt;()&gt;&gt;,
 <a href=#446 id=446 data-nosnippet>446</a>&gt;
 <a href=#447 id=447 data-nosnippet>447</a><span class="kw">where
@@ -643,7 +643,7 @@
 <a href=#643 id=643 data-nosnippet>643</a>        E,
 <a href=#644 id=644 data-nosnippet>644</a>        ContractRef,
 <a href=#645 id=645 data-nosnippet>645</a>        Set&lt;Limits&gt;,
-<a href=#646 id=646 data-nosnippet>646</a>        Set&lt;ExecutionInput&lt;Args, ScaleEncoding&gt;&gt;,
+<a href=#646 id=646 data-nosnippet>646</a>        Set&lt;ExecutionInput&lt;Args, Ink&gt;&gt;,
 <a href=#647 id=647 data-nosnippet>647</a>        Set&lt;ReturnType&lt;RetType&gt;&gt;,
 <a href=#648 id=648 data-nosnippet>648</a>    &gt;
 <a href=#649 id=649 data-nosnippet>649</a><span class="kw">where
@@ -669,7 +669,7 @@
 <a href=#669 id=669 data-nosnippet>669</a>        E,
 <a href=#670 id=670 data-nosnippet>670</a>        ContractRef,
 <a href=#671 id=671 data-nosnippet>671</a>        Set&lt;LimitParamsV2&gt;,
-<a href=#672 id=672 data-nosnippet>672</a>        Set&lt;ExecutionInput&lt;Args, ScaleEncoding&gt;&gt;,
+<a href=#672 id=672 data-nosnippet>672</a>        Set&lt;ExecutionInput&lt;Args, Ink&gt;&gt;,
 <a href=#673 id=673 data-nosnippet>673</a>        Set&lt;ReturnType&lt;RetType&gt;&gt;,
 <a href=#674 id=674 data-nosnippet>674</a>    &gt;
 <a href=#675 id=675 data-nosnippet>675</a><span class="kw">where
@@ -679,7 +679,7 @@
 <a href=#679 id=679 data-nosnippet>679</a>        <span class="kw">crate</span>::reflect::ContractConstructorDecoder,
 <a href=#680 id=680 data-nosnippet>680</a>    &lt;ContractRef <span class="kw">as </span><span class="kw">crate</span>::ContractReverseReference&gt;::Type:
 <a href=#681 id=681 data-nosnippet>681</a>        <span class="kw">crate</span>::reflect::ContractMessageDecoder,
-<a href=#682 id=682 data-nosnippet>682</a>    Args: AbiEncodeWith&lt;ScaleEncoding&gt;,
+<a href=#682 id=682 data-nosnippet>682</a>    Args: AbiEncodeWith&lt;Ink&gt;,
 <a href=#683 id=683 data-nosnippet>683</a>    RetType: ConstructorReturnType&lt;ContractRef&gt;,
 <a href=#684 id=684 data-nosnippet>684</a>{
 <a href=#685 id=685 data-nosnippet>685</a>    <span class="doccomment">/// todo check comment

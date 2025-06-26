@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["consume_type"],"struct":["IsSameType"]};
