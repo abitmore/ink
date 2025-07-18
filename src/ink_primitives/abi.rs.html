@@ -108,7 +108,7 @@
 <a href=#108 id=108 data-nosnippet>108</a>}
 <a href=#109 id=109 data-nosnippet>109</a>
 <a href=#110 id=110 data-nosnippet>110</a><span class="kw">impl</span>&lt;T: SolDecode&gt; AbiDecodeWith&lt;Sol&gt; <span class="kw">for </span>T {
-<a href=#111 id=111 data-nosnippet>111</a>    <span class="kw">type </span>Error = alloy_sol_types::Error;
+<a href=#111 id=111 data-nosnippet>111</a>    <span class="kw">type </span>Error = <span class="kw">crate</span>::sol::Error;
 <a href=#112 id=112 data-nosnippet>112</a>    <span class="kw">fn </span>decode_with(buffer: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
 <a href=#113 id=113 data-nosnippet>113</a>        T::decode(buffer)
 <a href=#114 id=114 data-nosnippet>114</a>    }

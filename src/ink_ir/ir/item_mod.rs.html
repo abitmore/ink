@@ -647,12 +647,12 @@
 <a href=#647 id=647 data-nosnippet>647</a>    /// # }
 <a href=#648 id=648 data-nosnippet>648</a>    /// # }}).unwrap();
 <a href=#649 id=649 data-nosnippet>649</a>    /// ```
-<a href=#650 id=650 data-nosnippet>650</a>    </span><span class="kw">pub fn </span>impls(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IterItemImpls {
+<a href=#650 id=650 data-nosnippet>650</a>    </span><span class="kw">pub fn </span>impls(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IterItemImpls&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#651 id=651 data-nosnippet>651</a>        IterItemImpls::new(<span class="self">self</span>)
 <a href=#652 id=652 data-nosnippet>652</a>    }
 <a href=#653 id=653 data-nosnippet>653</a>
 <a href=#654 id=654 data-nosnippet>654</a>    <span class="doccomment">/// Returns an iterator yielding all event definitions in this ink! module.
-<a href=#655 id=655 data-nosnippet>655</a>    </span><span class="kw">pub fn </span>events(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IterEvents {
+<a href=#655 id=655 data-nosnippet>655</a>    </span><span class="kw">pub fn </span>events(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IterEvents&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#656 id=656 data-nosnippet>656</a>        IterEvents::new(<span class="self">self</span>)
 <a href=#657 id=657 data-nosnippet>657</a>    }
 <a href=#658 id=658 data-nosnippet>658</a>

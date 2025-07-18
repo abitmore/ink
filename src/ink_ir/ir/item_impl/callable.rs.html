@@ -128,7 +128,7 @@
 <a href=#128 id=128 data-nosnippet>128</a>        &lt;C <span class="kw">as </span>Callable&gt;::visibility(<span class="self">self</span>.callable)
 <a href=#129 id=129 data-nosnippet>129</a>    }
 <a href=#130 id=130 data-nosnippet>130</a>
-<a href=#131 id=131 data-nosnippet>131</a>    <span class="kw">fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InputsIter {
+<a href=#131 id=131 data-nosnippet>131</a>    <span class="kw">fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InputsIter&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#132 id=132 data-nosnippet>132</a>        &lt;C <span class="kw">as </span>Callable&gt;::inputs(<span class="self">self</span>.callable)
 <a href=#133 id=133 data-nosnippet>133</a>    }
 <a href=#134 id=134 data-nosnippet>134</a>
@@ -187,7 +187,7 @@
 <a href=#187 id=187 data-nosnippet>187</a>    </span><span class="kw">fn </span>visibility(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Visibility;
 <a href=#188 id=188 data-nosnippet>188</a>
 <a href=#189 id=189 data-nosnippet>189</a>    <span class="doccomment">/// Returns an iterator yielding all input parameters of the ink! callable.
-<a href=#190 id=190 data-nosnippet>190</a>    </span><span class="kw">fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InputsIter;
+<a href=#190 id=190 data-nosnippet>190</a>    </span><span class="kw">fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; InputsIter&lt;<span class="lifetime">'_</span>&gt;;
 <a href=#191 id=191 data-nosnippet>191</a>
 <a href=#192 id=192 data-nosnippet>192</a>    <span class="doccomment">/// Returns the span of the inputs of the ink! callable.
 <a href=#193 id=193 data-nosnippet>193</a>    </span><span class="kw">fn </span>inputs_span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Span;

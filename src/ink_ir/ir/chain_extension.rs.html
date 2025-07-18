@@ -54,7 +54,7 @@
 <a href=#54 id=54 data-nosnippet>54</a>    }
 <a href=#55 id=55 data-nosnippet>55</a>
 <a href=#56 id=56 data-nosnippet>56</a>    <span class="doccomment">/// Returns a slice over all the chain extension methods.
-<a href=#57 id=57 data-nosnippet>57</a>    </span><span class="kw">pub fn </span>iter_methods(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SliceIter&lt;ChainExtensionMethod&gt; {
+<a href=#57 id=57 data-nosnippet>57</a>    </span><span class="kw">pub fn </span>iter_methods(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SliceIter&lt;<span class="lifetime">'_</span>, ChainExtensionMethod&gt; {
 <a href=#58 id=58 data-nosnippet>58</a>        <span class="self">self</span>.methods.iter()
 <a href=#59 id=59 data-nosnippet>59</a>    }
 <a href=#60 id=60 data-nosnippet>60</a>
@@ -186,7 +186,7 @@
 <a href=#186 id=186 data-nosnippet>186</a>    }
 <a href=#187 id=187 data-nosnippet>187</a>
 <a href=#188 id=188 data-nosnippet>188</a>    <span class="doccomment">/// Returns an iterator over the inputs of the chain extension method.
-<a href=#189 id=189 data-nosnippet>189</a>    </span><span class="kw">pub fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ChainExtensionMethodInputs {
+<a href=#189 id=189 data-nosnippet>189</a>    </span><span class="kw">pub fn </span>inputs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ChainExtensionMethodInputs&lt;<span class="lifetime">'_</span>&gt; {
 <a href=#190 id=190 data-nosnippet>190</a>        ChainExtensionMethodInputs {
 <a href=#191 id=191 data-nosnippet>191</a>            iter: <span class="self">self</span>.item.sig.inputs.iter(),
 <a href=#192 id=192 data-nosnippet>192</a>        }
