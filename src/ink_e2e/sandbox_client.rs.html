@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `crates/e2e/src/sandbox_client.rs`."><title>sandbox_client.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ink_e2e" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../static.files/storage-3a5871a4.js"></script><script defer src="../../static.files/src-script-b8d3f215.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://use.ink/crate-docs/favicon.png"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">ink_e2e/</div>sandbox_client.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Copyright (C) Use Ink (UK) Ltd.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `crates/e2e/src/sandbox_client.rs`."><title>sandbox_client.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ink_e2e" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0 (17067e9ac 2025-05-09)" data-channel="1.87.0" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../static.files/storage-82c7156e.js"></script><script defer src="../../static.files/src-script-63605ae7.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://use.ink/crate-docs/favicon.png"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">ink_e2e/</div>sandbox_client.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Copyright (C) Use Ink (UK) Ltd.
 <a href=#2 id=2 data-nosnippet>2</a>//
 <a href=#3 id=3 data-nosnippet>3</a>// Licensed under the Apache License, Version 2.0 (the "License");
 <a href=#4 id=4 data-nosnippet>4</a>// you may not use this file except in compliance with the License.
@@ -146,7 +146,7 @@
 <a href=#146 id=146 data-nosnippet>146</a>        <span class="kw">for </span>account <span class="kw">in </span>accounts.iter() {
 <a href=#147 id=147 data-nosnippet>147</a>            sandbox
 <a href=#148 id=148 data-nosnippet>148</a>                .mint_into(account, TOKENS.into())
-<a href=#149 id=149 data-nosnippet>149</a>                .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">"Failed to mint {} tokens"</span>, TOKENS));
+<a href=#149 id=149 data-nosnippet>149</a>                .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">"Failed to mint {TOKENS} tokens"</span>));
 <a href=#150 id=150 data-nosnippet>150</a>        }
 <a href=#151 id=151 data-nosnippet>151</a>    }
 <a href=#152 id=152 data-nosnippet>152</a>}
@@ -323,7 +323,7 @@
 <a href=#323 id=323 data-nosnippet>323</a>        constructor: <span class="kw-2">&amp;mut </span>CreateBuilderPartial&lt;E, Contract, Args, R, Abi&gt;,
 <a href=#324 id=324 data-nosnippet>324</a>        value: E::Balance,
 <a href=#325 id=325 data-nosnippet>325</a>        storage_deposit_limit: DepositLimit&lt;E::Balance&gt;,
-<a href=#326 id=326 data-nosnippet>326</a>    ) -&gt; <span class="prelude-ty">Result</span>&lt;InstantiateDryRunResult&lt;E&gt;, <span class="self">Self</span>::Error&gt; {
+<a href=#326 id=326 data-nosnippet>326</a>    ) -&gt; <span class="prelude-ty">Result</span>&lt;InstantiateDryRunResult&lt;E, Abi&gt;, <span class="self">Self</span>::Error&gt; {
 <a href=#327 id=327 data-nosnippet>327</a>        <span class="comment">// todo has to be: let _ = &lt;Client&lt;AccountId, S&gt; as
 <a href=#328 id=328 data-nosnippet>328</a>        // BuilderClient&lt;E&gt;&gt;::map_account_dry_run(self, &amp;caller).await;
 <a href=#329 id=329 data-nosnippet>329</a>        </span><span class="kw">let _ </span>=
@@ -512,7 +512,7 @@
 <a href=#512 id=512 data-nosnippet>512</a>        <span class="self">self</span>.sandbox
 <a href=#513 id=513 data-nosnippet>513</a>            .dry_run(|sandbox| sandbox.map_account(origin))
 <a href=#514 id=514 data-nosnippet>514</a>            .map_err(|err| {
-<a href=#515 id=515 data-nosnippet>515</a>                SandboxErr::new(<span class="macro">format!</span>(<span class="string">"map_account_dry_run: execution error {:?}"</span>, err))
+<a href=#515 id=515 data-nosnippet>515</a>                SandboxErr::new(<span class="macro">format!</span>(<span class="string">"map_account_dry_run: execution error {err:?}"</span>))
 <a href=#516 id=516 data-nosnippet>516</a>            })
 <a href=#517 id=517 data-nosnippet>517</a>    }
 <a href=#518 id=518 data-nosnippet>518</a>
@@ -522,7 +522,7 @@
 <a href=#522 id=522 data-nosnippet>522</a>        <span class="kw">let </span>origin = OriginFor::&lt;S::Runtime&gt;::from(origin);
 <a href=#523 id=523 data-nosnippet>523</a>
 <a href=#524 id=524 data-nosnippet>524</a>        <span class="self">self</span>.sandbox.map_account(origin).map_err(|err| {
-<a href=#525 id=525 data-nosnippet>525</a>            SandboxErr::new(<span class="macro">format!</span>(<span class="string">"map_account: execution error {:?}"</span>, err))
+<a href=#525 id=525 data-nosnippet>525</a>            SandboxErr::new(<span class="macro">format!</span>(<span class="string">"map_account: execution error {err:?}"</span>))
 <a href=#526 id=526 data-nosnippet>526</a>        })
 <a href=#527 id=527 data-nosnippet>527</a>    }
 <a href=#528 id=528 data-nosnippet>528</a>}

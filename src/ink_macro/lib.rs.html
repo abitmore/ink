@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `crates/ink/macro/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ink_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../static.files/storage-3a5871a4.js"></script><script defer src="../../static.files/src-script-b8d3f215.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://use.ink/crate-docs/favicon.png"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">ink_macro/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Copyright (C) Use Ink (UK) Ltd.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `crates/ink/macro/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-916cea96.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ink_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.87.0 (17067e9ac 2025-05-09)" data-channel="1.87.0" data-search-js="search-e7298875.js" data-settings-js="settings-d72f25bb.js" ><script src="../../static.files/storage-82c7156e.js"></script><script defer src="../../static.files/src-script-63605ae7.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fb8c74a8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://use.ink/crate-docs/favicon.png"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">ink_macro/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Copyright (C) Use Ink (UK) Ltd.
 <a href=#2 id=2 data-nosnippet>2</a>//
 <a href=#3 id=3 data-nosnippet>3</a>// Licensed under the Apache License, Version 2.0 (the "License");
 <a href=#4 id=4 data-nosnippet>4</a>// you may not use this file except in compliance with the License.
@@ -1602,123 +1602,261 @@
 <a href=#1602 id=1602 data-nosnippet>1602</a>    </span>storage::storage_layout_derive
 <a href=#1603 id=1603 data-nosnippet>1603</a>);
 <a href=#1604 id=1604 data-nosnippet>1604</a>
-<a href=#1605 id=1605 data-nosnippet>1605</a><span class="macro">synstructure::decl_derive!</span>(
-<a href=#1606 id=1606 data-nosnippet>1606</a>    [SolErrorDecode] =&gt;
-<a href=#1607 id=1607 data-nosnippet>1607</a>    <span class="doccomment">/// Derives an implementation of `ink::sol::SolErrorDecode`
-<a href=#1608 id=1608 data-nosnippet>1608</a>    /// for the given `struct` or `enum`.
-<a href=#1609 id=1609 data-nosnippet>1609</a>    ///
-<a href=#1610 id=1610 data-nosnippet>1610</a>    /// # Note
-<a href=#1611 id=1611 data-nosnippet>1611</a>    ///
-<a href=#1612 id=1612 data-nosnippet>1612</a>    /// All field types (if any) must implement [`ink::SolDecode`].
-<a href=#1613 id=1613 data-nosnippet>1613</a>    ///
-<a href=#1614 id=1614 data-nosnippet>1614</a>    /// # Example
-<a href=#1615 id=1615 data-nosnippet>1615</a>    ///
-<a href=#1616 id=1616 data-nosnippet>1616</a>    /// ```
-<a href=#1617 id=1617 data-nosnippet>1617</a>    /// use ink_macro::SolErrorDecode;
-<a href=#1618 id=1618 data-nosnippet>1618</a>    ///
-<a href=#1619 id=1619 data-nosnippet>1619</a>    /// #[derive(SolErrorDecode)]
-<a href=#1620 id=1620 data-nosnippet>1620</a>    /// struct UnitError;
-<a href=#1621 id=1621 data-nosnippet>1621</a>    ///
-<a href=#1622 id=1622 data-nosnippet>1622</a>    /// #[derive(SolErrorDecode)]
-<a href=#1623 id=1623 data-nosnippet>1623</a>    /// struct ErrorWithParams(bool, u8, String);
-<a href=#1624 id=1624 data-nosnippet>1624</a>    ///
-<a href=#1625 id=1625 data-nosnippet>1625</a>    /// #[derive(SolErrorDecode)]
-<a href=#1626 id=1626 data-nosnippet>1626</a>    /// struct ErrorWithNamedParams {
-<a href=#1627 id=1627 data-nosnippet>1627</a>    ///     status: bool,
-<a href=#1628 id=1628 data-nosnippet>1628</a>    ///     count: u8,
-<a href=#1629 id=1629 data-nosnippet>1629</a>    ///     reason: String,
-<a href=#1630 id=1630 data-nosnippet>1630</a>    /// }
-<a href=#1631 id=1631 data-nosnippet>1631</a>    ///
-<a href=#1632 id=1632 data-nosnippet>1632</a>    /// #[derive(SolErrorDecode)]
-<a href=#1633 id=1633 data-nosnippet>1633</a>    /// enum MultipleErrors {
-<a href=#1634 id=1634 data-nosnippet>1634</a>    ///     UnitError,
-<a href=#1635 id=1635 data-nosnippet>1635</a>    ///     ErrorWithParams(bool, u8, String),
-<a href=#1636 id=1636 data-nosnippet>1636</a>    ///     ErrorWithNamedParams {
-<a href=#1637 id=1637 data-nosnippet>1637</a>    ///         status: bool,
-<a href=#1638 id=1638 data-nosnippet>1638</a>    ///         count: u8,
-<a href=#1639 id=1639 data-nosnippet>1639</a>    ///         reason: String,
-<a href=#1640 id=1640 data-nosnippet>1640</a>    ///     }
-<a href=#1641 id=1641 data-nosnippet>1641</a>    /// }
-<a href=#1642 id=1642 data-nosnippet>1642</a>    /// ```
-<a href=#1643 id=1643 data-nosnippet>1643</a>    </span>sol::sol_error_decode_derive
-<a href=#1644 id=1644 data-nosnippet>1644</a>);
-<a href=#1645 id=1645 data-nosnippet>1645</a>
-<a href=#1646 id=1646 data-nosnippet>1646</a><span class="macro">synstructure::decl_derive!</span>(
-<a href=#1647 id=1647 data-nosnippet>1647</a>    [SolErrorEncode] =&gt;
-<a href=#1648 id=1648 data-nosnippet>1648</a>    <span class="doccomment">/// Derives an implementation of `ink::sol::SolErrorEncode`
-<a href=#1649 id=1649 data-nosnippet>1649</a>    /// for the given `struct` or `enum`.
-<a href=#1650 id=1650 data-nosnippet>1650</a>    ///
-<a href=#1651 id=1651 data-nosnippet>1651</a>    /// # Note
-<a href=#1652 id=1652 data-nosnippet>1652</a>    ///
-<a href=#1653 id=1653 data-nosnippet>1653</a>    /// All field types (if any) must implement [`ink::SolEncode`].
+<a href=#1605 id=1605 data-nosnippet>1605</a><span class="doccomment">/// Derive the re-exported traits `ink::scale::Encode`, `ink::scale::Decode` and
+<a href=#1606 id=1606 data-nosnippet>1606</a>/// `ink::scale_info::TypeInfo`. It enables using the built in derive macros for these
+<a href=#1607 id=1607 data-nosnippet>1607</a>/// traits without depending directly on the `parity-scale-codec` and `scale-info` crates.
+<a href=#1608 id=1608 data-nosnippet>1608</a>///
+<a href=#1609 id=1609 data-nosnippet>1609</a>/// # Options
+<a href=#1610 id=1610 data-nosnippet>1610</a>///   - `Encode`: derives `ink::scale::Encode`
+<a href=#1611 id=1611 data-nosnippet>1611</a>///   - `Decode`: derives `ink::scale::Decode`
+<a href=#1612 id=1612 data-nosnippet>1612</a>///   - `TypeInfo`: derives `ink::scale_info::TypeInfo`
+<a href=#1613 id=1613 data-nosnippet>1613</a>///
+<a href=#1614 id=1614 data-nosnippet>1614</a>/// # Examples
+<a href=#1615 id=1615 data-nosnippet>1615</a>///
+<a href=#1616 id=1616 data-nosnippet>1616</a>/// ```
+<a href=#1617 id=1617 data-nosnippet>1617</a>/// #[ink::scale_derive(Encode, Decode, TypeInfo)]
+<a href=#1618 id=1618 data-nosnippet>1618</a>/// pub enum Error {}
+<a href=#1619 id=1619 data-nosnippet>1619</a>/// ```
+<a href=#1620 id=1620 data-nosnippet>1620</a>/// This is a convenience macro that expands to include the additional `crate` attributes
+<a href=#1621 id=1621 data-nosnippet>1621</a>/// required for the path of the re-exported crates.
+<a href=#1622 id=1622 data-nosnippet>1622</a>///
+<a href=#1623 id=1623 data-nosnippet>1623</a>/// ```
+<a href=#1624 id=1624 data-nosnippet>1624</a>/// #[derive(::ink::scale::Encode, ::ink::scale::Decode)]
+<a href=#1625 id=1625 data-nosnippet>1625</a>/// #[codec(crate = ::ink::scale)]
+<a href=#1626 id=1626 data-nosnippet>1626</a>/// #[cfg_attr(
+<a href=#1627 id=1627 data-nosnippet>1627</a>///   feature = "std",
+<a href=#1628 id=1628 data-nosnippet>1628</a>///   derive(::scale_info::TypeInfo),
+<a href=#1629 id=1629 data-nosnippet>1629</a>///   scale_info(crate = ::ink::scale_info)
+<a href=#1630 id=1630 data-nosnippet>1630</a>/// )]
+<a href=#1631 id=1631 data-nosnippet>1631</a>/// pub enum Error {}
+<a href=#1632 id=1632 data-nosnippet>1632</a>/// ```
+<a href=#1633 id=1633 data-nosnippet>1633</a></span><span class="attr">#[proc_macro_attribute]
+<a href=#1634 id=1634 data-nosnippet>1634</a></span><span class="kw">pub fn </span>scale_derive(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
+<a href=#1635 id=1635 data-nosnippet>1635</a>    <span class="kw">match </span>scale::derive(attr.into(), item.into()) {
+<a href=#1636 id=1636 data-nosnippet>1636</a>        <span class="prelude-val">Ok</span>(output) =&gt; output.into(),
+<a href=#1637 id=1637 data-nosnippet>1637</a>        <span class="prelude-val">Err</span>(err) =&gt; err.to_compile_error().into(),
+<a href=#1638 id=1638 data-nosnippet>1638</a>    }
+<a href=#1639 id=1639 data-nosnippet>1639</a>}
+<a href=#1640 id=1640 data-nosnippet>1640</a>
+<a href=#1641 id=1641 data-nosnippet>1641</a><span class="macro">synstructure::decl_derive!</span>(
+<a href=#1642 id=1642 data-nosnippet>1642</a>    [SolDecode] =&gt;
+<a href=#1643 id=1643 data-nosnippet>1643</a>    <span class="doccomment">/// Derives an implementation of `ink::SolDecode`
+<a href=#1644 id=1644 data-nosnippet>1644</a>    /// for the given `struct` or `enum`.
+<a href=#1645 id=1645 data-nosnippet>1645</a>    ///
+<a href=#1646 id=1646 data-nosnippet>1646</a>    /// # Note
+<a href=#1647 id=1647 data-nosnippet>1647</a>    ///
+<a href=#1648 id=1648 data-nosnippet>1648</a>    /// All field types (if any) must implement [`ink::SolDecode`].
+<a href=#1649 id=1649 data-nosnippet>1649</a>    ///
+<a href=#1650 id=1650 data-nosnippet>1650</a>    /// # Example
+<a href=#1651 id=1651 data-nosnippet>1651</a>    ///
+<a href=#1652 id=1652 data-nosnippet>1652</a>    /// ```
+<a href=#1653 id=1653 data-nosnippet>1653</a>    /// use ink_macro::SolDecode;
 <a href=#1654 id=1654 data-nosnippet>1654</a>    ///
-<a href=#1655 id=1655 data-nosnippet>1655</a>    /// # Example
-<a href=#1656 id=1656 data-nosnippet>1656</a>    ///
-<a href=#1657 id=1657 data-nosnippet>1657</a>    /// ```
-<a href=#1658 id=1658 data-nosnippet>1658</a>    /// use ink_macro::SolErrorEncode;
-<a href=#1659 id=1659 data-nosnippet>1659</a>    ///
-<a href=#1660 id=1660 data-nosnippet>1660</a>    /// #[derive(SolErrorEncode)]
-<a href=#1661 id=1661 data-nosnippet>1661</a>    /// struct UnitError;
-<a href=#1662 id=1662 data-nosnippet>1662</a>    ///
-<a href=#1663 id=1663 data-nosnippet>1663</a>    /// #[derive(SolErrorEncode)]
-<a href=#1664 id=1664 data-nosnippet>1664</a>    /// struct ErrorWithParams(bool, u8, String);
-<a href=#1665 id=1665 data-nosnippet>1665</a>    ///
-<a href=#1666 id=1666 data-nosnippet>1666</a>    /// #[derive(SolErrorEncode)]
-<a href=#1667 id=1667 data-nosnippet>1667</a>    /// struct ErrorWithNamedParams {
-<a href=#1668 id=1668 data-nosnippet>1668</a>    ///     status: bool,
-<a href=#1669 id=1669 data-nosnippet>1669</a>    ///     count: u8,
-<a href=#1670 id=1670 data-nosnippet>1670</a>    ///     reason: String,
-<a href=#1671 id=1671 data-nosnippet>1671</a>    /// }
-<a href=#1672 id=1672 data-nosnippet>1672</a>    ///
-<a href=#1673 id=1673 data-nosnippet>1673</a>    /// #[derive(SolErrorEncode)]
-<a href=#1674 id=1674 data-nosnippet>1674</a>    /// enum MultipleErrors {
-<a href=#1675 id=1675 data-nosnippet>1675</a>    ///     UnitError,
-<a href=#1676 id=1676 data-nosnippet>1676</a>    ///     ErrorWithParams(bool, u8, String),
-<a href=#1677 id=1677 data-nosnippet>1677</a>    ///     ErrorWithNamedParams {
-<a href=#1678 id=1678 data-nosnippet>1678</a>    ///         status: bool,
-<a href=#1679 id=1679 data-nosnippet>1679</a>    ///         count: u8,
-<a href=#1680 id=1680 data-nosnippet>1680</a>    ///         reason: String,
-<a href=#1681 id=1681 data-nosnippet>1681</a>    ///     }
-<a href=#1682 id=1682 data-nosnippet>1682</a>    /// }
-<a href=#1683 id=1683 data-nosnippet>1683</a>    /// ```
-<a href=#1684 id=1684 data-nosnippet>1684</a>    </span>sol::sol_error_encode_derive
-<a href=#1685 id=1685 data-nosnippet>1685</a>);
-<a href=#1686 id=1686 data-nosnippet>1686</a>
-<a href=#1687 id=1687 data-nosnippet>1687</a><span class="doccomment">/// Derive the re-exported traits `ink::scale::Encode`, `ink::scale::Decode` and
-<a href=#1688 id=1688 data-nosnippet>1688</a>/// `ink::scale_info::TypeInfo`. It enables using the built in derive macros for these
-<a href=#1689 id=1689 data-nosnippet>1689</a>/// traits without depending directly on the `parity-scale-codec` and `scale-info` crates.
-<a href=#1690 id=1690 data-nosnippet>1690</a>///
-<a href=#1691 id=1691 data-nosnippet>1691</a>/// # Options
-<a href=#1692 id=1692 data-nosnippet>1692</a>///   - `Encode`: derives `ink::scale::Encode`
-<a href=#1693 id=1693 data-nosnippet>1693</a>///   - `Decode`: derives `ink::scale::Decode`
-<a href=#1694 id=1694 data-nosnippet>1694</a>///   - `TypeInfo`: derives `ink::scale_info::TypeInfo`
-<a href=#1695 id=1695 data-nosnippet>1695</a>///
-<a href=#1696 id=1696 data-nosnippet>1696</a>/// # Examples
-<a href=#1697 id=1697 data-nosnippet>1697</a>///
-<a href=#1698 id=1698 data-nosnippet>1698</a>/// ```
-<a href=#1699 id=1699 data-nosnippet>1699</a>/// #[ink::scale_derive(Encode, Decode, TypeInfo)]
-<a href=#1700 id=1700 data-nosnippet>1700</a>/// pub enum Error {}
-<a href=#1701 id=1701 data-nosnippet>1701</a>/// ```
-<a href=#1702 id=1702 data-nosnippet>1702</a>/// This is a convenience macro that expands to include the additional `crate` attributes
-<a href=#1703 id=1703 data-nosnippet>1703</a>/// required for the path of the re-exported crates.
-<a href=#1704 id=1704 data-nosnippet>1704</a>///
-<a href=#1705 id=1705 data-nosnippet>1705</a>/// ```
-<a href=#1706 id=1706 data-nosnippet>1706</a>/// #[derive(::ink::scale::Encode, ::ink::scale::Decode)]
-<a href=#1707 id=1707 data-nosnippet>1707</a>/// #[codec(crate = ::ink::scale)]
-<a href=#1708 id=1708 data-nosnippet>1708</a>/// #[cfg_attr(
-<a href=#1709 id=1709 data-nosnippet>1709</a>///   feature = "std",
-<a href=#1710 id=1710 data-nosnippet>1710</a>///   derive(::scale_info::TypeInfo),
-<a href=#1711 id=1711 data-nosnippet>1711</a>///   scale_info(crate = ::ink::scale_info)
-<a href=#1712 id=1712 data-nosnippet>1712</a>/// )]
-<a href=#1713 id=1713 data-nosnippet>1713</a>/// pub enum Error {}
-<a href=#1714 id=1714 data-nosnippet>1714</a>/// ```
-<a href=#1715 id=1715 data-nosnippet>1715</a></span><span class="attr">#[proc_macro_attribute]
-<a href=#1716 id=1716 data-nosnippet>1716</a></span><span class="kw">pub fn </span>scale_derive(attr: TokenStream, item: TokenStream) -&gt; TokenStream {
-<a href=#1717 id=1717 data-nosnippet>1717</a>    <span class="kw">match </span>scale::derive(attr.into(), item.into()) {
-<a href=#1718 id=1718 data-nosnippet>1718</a>        <span class="prelude-val">Ok</span>(output) =&gt; output.into(),
-<a href=#1719 id=1719 data-nosnippet>1719</a>        <span class="prelude-val">Err</span>(err) =&gt; err.to_compile_error().into(),
-<a href=#1720 id=1720 data-nosnippet>1720</a>    }
-<a href=#1721 id=1721 data-nosnippet>1721</a>}
-<a href=#1722 id=1722 data-nosnippet>1722</a>
-<a href=#1723 id=1723 data-nosnippet>1723</a><span class="attr">#[cfg(test)]
-<a href=#1724 id=1724 data-nosnippet>1724</a></span><span class="kw">pub use </span>contract::generate_or_err;</code></pre></div></section></main></body></html>
+<a href=#1655 id=1655 data-nosnippet>1655</a>    /// #[derive(SolDecode)]
+<a href=#1656 id=1656 data-nosnippet>1656</a>    /// struct UnitStruct;
+<a href=#1657 id=1657 data-nosnippet>1657</a>    ///
+<a href=#1658 id=1658 data-nosnippet>1658</a>    /// #[derive(SolDecode)]
+<a href=#1659 id=1659 data-nosnippet>1659</a>    /// struct TupleStruct(bool, u8, String);
+<a href=#1660 id=1660 data-nosnippet>1660</a>    ///
+<a href=#1661 id=1661 data-nosnippet>1661</a>    /// #[derive(SolDecode)]
+<a href=#1662 id=1662 data-nosnippet>1662</a>    /// struct FieldStruct {
+<a href=#1663 id=1663 data-nosnippet>1663</a>    ///     status: bool,
+<a href=#1664 id=1664 data-nosnippet>1664</a>    ///     count: u8,
+<a href=#1665 id=1665 data-nosnippet>1665</a>    ///     reason: String,
+<a href=#1666 id=1666 data-nosnippet>1666</a>    /// }
+<a href=#1667 id=1667 data-nosnippet>1667</a>    ///
+<a href=#1668 id=1668 data-nosnippet>1668</a>    /// #[derive(SolDecode)]
+<a href=#1669 id=1669 data-nosnippet>1669</a>    /// enum SimpleEnum {
+<a href=#1670 id=1670 data-nosnippet>1670</a>    ///     One,
+<a href=#1671 id=1671 data-nosnippet>1671</a>    ///     Two,
+<a href=#1672 id=1672 data-nosnippet>1672</a>    ///     Three,
+<a href=#1673 id=1673 data-nosnippet>1673</a>    /// }
+<a href=#1674 id=1674 data-nosnippet>1674</a>    ///
+<a href=#1675 id=1675 data-nosnippet>1675</a>    /// #[derive(SolDecode)]
+<a href=#1676 id=1676 data-nosnippet>1676</a>    /// struct NestedStruct {
+<a href=#1677 id=1677 data-nosnippet>1677</a>    ///     unit: UnitStruct,
+<a href=#1678 id=1678 data-nosnippet>1678</a>    ///     tuple: TupleStruct,
+<a href=#1679 id=1679 data-nosnippet>1679</a>    ///     fields: FieldStruct,
+<a href=#1680 id=1680 data-nosnippet>1680</a>    ///     enumerate: SimpleEnum,
+<a href=#1681 id=1681 data-nosnippet>1681</a>    /// }
+<a href=#1682 id=1682 data-nosnippet>1682</a>    ///
+<a href=#1683 id=1683 data-nosnippet>1683</a>    /// #[derive(SolDecode)]
+<a href=#1684 id=1684 data-nosnippet>1684</a>    /// struct GenericStruct&lt;T&gt; {
+<a href=#1685 id=1685 data-nosnippet>1685</a>    ///     concrete: u8,
+<a href=#1686 id=1686 data-nosnippet>1686</a>    ///     generic: T,
+<a href=#1687 id=1687 data-nosnippet>1687</a>    /// }
+<a href=#1688 id=1688 data-nosnippet>1688</a>    /// ```
+<a href=#1689 id=1689 data-nosnippet>1689</a>    ///
+<a href=#1690 id=1690 data-nosnippet>1690</a>    /// # Note
+<a href=#1691 id=1691 data-nosnippet>1691</a>    ///
+<a href=#1692 id=1692 data-nosnippet>1692</a>    /// Solidity has no semantic equivalent for enums with fields
+<a href=#1693 id=1693 data-nosnippet>1693</a>    /// (i.e. [Solidity enums][sol-enum] can only express the equivalent of
+<a href=#1694 id=1694 data-nosnippet>1694</a>    /// Rust [unit-only][rust-enum-unit-only] or [field-less][rust-enum-field-less] enums).
+<a href=#1695 id=1695 data-nosnippet>1695</a>    /// So mapping complex Rust enums (i.e. enums with fields) to "equivalent" Solidity
+<a href=#1696 id=1696 data-nosnippet>1696</a>    /// representations typically yields complex structures based on
+<a href=#1697 id=1697 data-nosnippet>1697</a>    /// tuples (at [Solidity ABI encoding][sol-abi] level)
+<a href=#1698 id=1698 data-nosnippet>1698</a>    /// and structs (at Solidity language level).
+<a href=#1699 id=1699 data-nosnippet>1699</a>    ///
+<a href=#1700 id=1700 data-nosnippet>1700</a>    /// Because of this, this `Derive` macro doesn't generate [`ink::SolEncode`]
+<a href=#1701 id=1701 data-nosnippet>1701</a>    /// implementations for enums with fields.
+<a href=#1702 id=1702 data-nosnippet>1702</a>    ///
+<a href=#1703 id=1703 data-nosnippet>1703</a>    /// [sol-enum]: https://docs.soliditylang.org/en/latest/types.html#enums
+<a href=#1704 id=1704 data-nosnippet>1704</a>    /// [rust-enum-unit-only]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.unit-only
+<a href=#1705 id=1705 data-nosnippet>1705</a>    /// [rust-enum-field-less]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.fieldless
+<a href=#1706 id=1706 data-nosnippet>1706</a>    /// [sol-abi]: https://docs.soliditylang.org/en/latest/abi-spec.html#mapping-solidity-to-abi-types
+<a href=#1707 id=1707 data-nosnippet>1707</a>    </span>sol::sol_decode_derive
+<a href=#1708 id=1708 data-nosnippet>1708</a>);
+<a href=#1709 id=1709 data-nosnippet>1709</a>
+<a href=#1710 id=1710 data-nosnippet>1710</a><span class="macro">synstructure::decl_derive!</span>(
+<a href=#1711 id=1711 data-nosnippet>1711</a>    [SolEncode] =&gt;
+<a href=#1712 id=1712 data-nosnippet>1712</a>    <span class="doccomment">/// Derives an implementation of `ink::SolEncode`
+<a href=#1713 id=1713 data-nosnippet>1713</a>    /// for the given `struct` or `enum`.
+<a href=#1714 id=1714 data-nosnippet>1714</a>    ///
+<a href=#1715 id=1715 data-nosnippet>1715</a>    /// # Note
+<a href=#1716 id=1716 data-nosnippet>1716</a>    ///
+<a href=#1717 id=1717 data-nosnippet>1717</a>    /// All field types (if any) must implement [`ink::SolEncode`].
+<a href=#1718 id=1718 data-nosnippet>1718</a>    ///
+<a href=#1719 id=1719 data-nosnippet>1719</a>    /// # Example
+<a href=#1720 id=1720 data-nosnippet>1720</a>    ///
+<a href=#1721 id=1721 data-nosnippet>1721</a>    /// ```
+<a href=#1722 id=1722 data-nosnippet>1722</a>    /// use ink_macro::SolEncode;
+<a href=#1723 id=1723 data-nosnippet>1723</a>    ///
+<a href=#1724 id=1724 data-nosnippet>1724</a>    /// #[derive(SolEncode)]
+<a href=#1725 id=1725 data-nosnippet>1725</a>    /// struct UnitStruct;
+<a href=#1726 id=1726 data-nosnippet>1726</a>    ///
+<a href=#1727 id=1727 data-nosnippet>1727</a>    /// #[derive(SolEncode)]
+<a href=#1728 id=1728 data-nosnippet>1728</a>    /// struct TupleStruct(bool, u8, String);
+<a href=#1729 id=1729 data-nosnippet>1729</a>    ///
+<a href=#1730 id=1730 data-nosnippet>1730</a>    /// #[derive(SolEncode)]
+<a href=#1731 id=1731 data-nosnippet>1731</a>    /// struct FieldStruct {
+<a href=#1732 id=1732 data-nosnippet>1732</a>    ///     status: bool,
+<a href=#1733 id=1733 data-nosnippet>1733</a>    ///     count: u8,
+<a href=#1734 id=1734 data-nosnippet>1734</a>    ///     reason: String,
+<a href=#1735 id=1735 data-nosnippet>1735</a>    /// }
+<a href=#1736 id=1736 data-nosnippet>1736</a>    ///
+<a href=#1737 id=1737 data-nosnippet>1737</a>    /// #[derive(SolEncode)]
+<a href=#1738 id=1738 data-nosnippet>1738</a>    /// enum SimpleEnum {
+<a href=#1739 id=1739 data-nosnippet>1739</a>    ///     One,
+<a href=#1740 id=1740 data-nosnippet>1740</a>    ///     Two,
+<a href=#1741 id=1741 data-nosnippet>1741</a>    ///     Three,
+<a href=#1742 id=1742 data-nosnippet>1742</a>    /// }
+<a href=#1743 id=1743 data-nosnippet>1743</a>    ///
+<a href=#1744 id=1744 data-nosnippet>1744</a>    /// #[derive(SolEncode)]
+<a href=#1745 id=1745 data-nosnippet>1745</a>    /// struct NestedStruct {
+<a href=#1746 id=1746 data-nosnippet>1746</a>    ///     unit: UnitStruct,
+<a href=#1747 id=1747 data-nosnippet>1747</a>    ///     tuple: TupleStruct,
+<a href=#1748 id=1748 data-nosnippet>1748</a>    ///     fields: FieldStruct,
+<a href=#1749 id=1749 data-nosnippet>1749</a>    ///     enumerate: SimpleEnum,
+<a href=#1750 id=1750 data-nosnippet>1750</a>    /// }
+<a href=#1751 id=1751 data-nosnippet>1751</a>    ///
+<a href=#1752 id=1752 data-nosnippet>1752</a>    /// #[derive(SolEncode)]
+<a href=#1753 id=1753 data-nosnippet>1753</a>    /// struct GenericStruct&lt;T&gt; {
+<a href=#1754 id=1754 data-nosnippet>1754</a>    ///     concrete: u8,
+<a href=#1755 id=1755 data-nosnippet>1755</a>    ///     generic: T,
+<a href=#1756 id=1756 data-nosnippet>1756</a>    /// }
+<a href=#1757 id=1757 data-nosnippet>1757</a>    /// ```
+<a href=#1758 id=1758 data-nosnippet>1758</a>    ///
+<a href=#1759 id=1759 data-nosnippet>1759</a>    /// # Note
+<a href=#1760 id=1760 data-nosnippet>1760</a>    ///
+<a href=#1761 id=1761 data-nosnippet>1761</a>    /// Solidity has no semantic equivalent for enums with fields
+<a href=#1762 id=1762 data-nosnippet>1762</a>    /// (i.e. [Solidity enums][sol-enum] can only express the equivalent of
+<a href=#1763 id=1763 data-nosnippet>1763</a>    /// Rust [unit-only][rust-enum-unit-only] or [field-less][rust-enum-field-less] enums).
+<a href=#1764 id=1764 data-nosnippet>1764</a>    /// So mapping complex Rust enums (i.e. enums with fields) to "equivalent" Solidity
+<a href=#1765 id=1765 data-nosnippet>1765</a>    /// representations typically yields complex structures based on
+<a href=#1766 id=1766 data-nosnippet>1766</a>    /// tuples (at [Solidity ABI encoding][sol-abi] level)
+<a href=#1767 id=1767 data-nosnippet>1767</a>    /// and structs (at Solidity language level).
+<a href=#1768 id=1768 data-nosnippet>1768</a>    ///
+<a href=#1769 id=1769 data-nosnippet>1769</a>    /// Because of this, this `Derive` macro doesn't generate [`ink::SolEncode`]
+<a href=#1770 id=1770 data-nosnippet>1770</a>    /// implementations for enums with fields.
+<a href=#1771 id=1771 data-nosnippet>1771</a>    ///
+<a href=#1772 id=1772 data-nosnippet>1772</a>    /// [sol-enum]: https://docs.soliditylang.org/en/latest/types.html#enums
+<a href=#1773 id=1773 data-nosnippet>1773</a>    /// [rust-enum-unit-only]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.unit-only
+<a href=#1774 id=1774 data-nosnippet>1774</a>    /// [rust-enum-field-less]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.fieldless
+<a href=#1775 id=1775 data-nosnippet>1775</a>    /// [sol-abi]: https://docs.soliditylang.org/en/latest/abi-spec.html#mapping-solidity-to-abi-types
+<a href=#1776 id=1776 data-nosnippet>1776</a>    </span>sol::sol_encode_derive
+<a href=#1777 id=1777 data-nosnippet>1777</a>);
+<a href=#1778 id=1778 data-nosnippet>1778</a>
+<a href=#1779 id=1779 data-nosnippet>1779</a><span class="macro">synstructure::decl_derive!</span>(
+<a href=#1780 id=1780 data-nosnippet>1780</a>    [SolErrorDecode] =&gt;
+<a href=#1781 id=1781 data-nosnippet>1781</a>    <span class="doccomment">/// Derives an implementation of `ink::sol::SolErrorDecode`
+<a href=#1782 id=1782 data-nosnippet>1782</a>    /// for the given `struct` or `enum`.
+<a href=#1783 id=1783 data-nosnippet>1783</a>    ///
+<a href=#1784 id=1784 data-nosnippet>1784</a>    /// # Note
+<a href=#1785 id=1785 data-nosnippet>1785</a>    ///
+<a href=#1786 id=1786 data-nosnippet>1786</a>    /// All field types (if any) must implement [`ink::SolDecode`].
+<a href=#1787 id=1787 data-nosnippet>1787</a>    ///
+<a href=#1788 id=1788 data-nosnippet>1788</a>    /// # Example
+<a href=#1789 id=1789 data-nosnippet>1789</a>    ///
+<a href=#1790 id=1790 data-nosnippet>1790</a>    /// ```
+<a href=#1791 id=1791 data-nosnippet>1791</a>    /// use ink_macro::SolErrorDecode;
+<a href=#1792 id=1792 data-nosnippet>1792</a>    ///
+<a href=#1793 id=1793 data-nosnippet>1793</a>    /// #[derive(SolErrorDecode)]
+<a href=#1794 id=1794 data-nosnippet>1794</a>    /// struct UnitError;
+<a href=#1795 id=1795 data-nosnippet>1795</a>    ///
+<a href=#1796 id=1796 data-nosnippet>1796</a>    /// #[derive(SolErrorDecode)]
+<a href=#1797 id=1797 data-nosnippet>1797</a>    /// struct ErrorWithParams(bool, u8, String);
+<a href=#1798 id=1798 data-nosnippet>1798</a>    ///
+<a href=#1799 id=1799 data-nosnippet>1799</a>    /// #[derive(SolErrorDecode)]
+<a href=#1800 id=1800 data-nosnippet>1800</a>    /// struct ErrorWithNamedParams {
+<a href=#1801 id=1801 data-nosnippet>1801</a>    ///     status: bool,
+<a href=#1802 id=1802 data-nosnippet>1802</a>    ///     count: u8,
+<a href=#1803 id=1803 data-nosnippet>1803</a>    ///     reason: String,
+<a href=#1804 id=1804 data-nosnippet>1804</a>    /// }
+<a href=#1805 id=1805 data-nosnippet>1805</a>    ///
+<a href=#1806 id=1806 data-nosnippet>1806</a>    /// #[derive(SolErrorDecode)]
+<a href=#1807 id=1807 data-nosnippet>1807</a>    /// enum MultipleErrors {
+<a href=#1808 id=1808 data-nosnippet>1808</a>    ///     UnitError,
+<a href=#1809 id=1809 data-nosnippet>1809</a>    ///     ErrorWithParams(bool, u8, String),
+<a href=#1810 id=1810 data-nosnippet>1810</a>    ///     ErrorWithNamedParams {
+<a href=#1811 id=1811 data-nosnippet>1811</a>    ///         status: bool,
+<a href=#1812 id=1812 data-nosnippet>1812</a>    ///         count: u8,
+<a href=#1813 id=1813 data-nosnippet>1813</a>    ///         reason: String,
+<a href=#1814 id=1814 data-nosnippet>1814</a>    ///     }
+<a href=#1815 id=1815 data-nosnippet>1815</a>    /// }
+<a href=#1816 id=1816 data-nosnippet>1816</a>    /// ```
+<a href=#1817 id=1817 data-nosnippet>1817</a>    </span>sol::sol_error_decode_derive
+<a href=#1818 id=1818 data-nosnippet>1818</a>);
+<a href=#1819 id=1819 data-nosnippet>1819</a>
+<a href=#1820 id=1820 data-nosnippet>1820</a><span class="macro">synstructure::decl_derive!</span>(
+<a href=#1821 id=1821 data-nosnippet>1821</a>    [SolErrorEncode] =&gt;
+<a href=#1822 id=1822 data-nosnippet>1822</a>    <span class="doccomment">/// Derives an implementation of `ink::sol::SolErrorEncode`
+<a href=#1823 id=1823 data-nosnippet>1823</a>    /// for the given `struct` or `enum`.
+<a href=#1824 id=1824 data-nosnippet>1824</a>    ///
+<a href=#1825 id=1825 data-nosnippet>1825</a>    /// # Note
+<a href=#1826 id=1826 data-nosnippet>1826</a>    ///
+<a href=#1827 id=1827 data-nosnippet>1827</a>    /// All field types (if any) must implement [`ink::SolEncode`].
+<a href=#1828 id=1828 data-nosnippet>1828</a>    ///
+<a href=#1829 id=1829 data-nosnippet>1829</a>    /// # Example
+<a href=#1830 id=1830 data-nosnippet>1830</a>    ///
+<a href=#1831 id=1831 data-nosnippet>1831</a>    /// ```
+<a href=#1832 id=1832 data-nosnippet>1832</a>    /// use ink_macro::SolErrorEncode;
+<a href=#1833 id=1833 data-nosnippet>1833</a>    ///
+<a href=#1834 id=1834 data-nosnippet>1834</a>    /// #[derive(SolErrorEncode)]
+<a href=#1835 id=1835 data-nosnippet>1835</a>    /// struct UnitError;
+<a href=#1836 id=1836 data-nosnippet>1836</a>    ///
+<a href=#1837 id=1837 data-nosnippet>1837</a>    /// #[derive(SolErrorEncode)]
+<a href=#1838 id=1838 data-nosnippet>1838</a>    /// struct ErrorWithParams(bool, u8, String);
+<a href=#1839 id=1839 data-nosnippet>1839</a>    ///
+<a href=#1840 id=1840 data-nosnippet>1840</a>    /// #[derive(SolErrorEncode)]
+<a href=#1841 id=1841 data-nosnippet>1841</a>    /// struct ErrorWithNamedParams {
+<a href=#1842 id=1842 data-nosnippet>1842</a>    ///     status: bool,
+<a href=#1843 id=1843 data-nosnippet>1843</a>    ///     count: u8,
+<a href=#1844 id=1844 data-nosnippet>1844</a>    ///     reason: String,
+<a href=#1845 id=1845 data-nosnippet>1845</a>    /// }
+<a href=#1846 id=1846 data-nosnippet>1846</a>    ///
+<a href=#1847 id=1847 data-nosnippet>1847</a>    /// #[derive(SolErrorEncode)]
+<a href=#1848 id=1848 data-nosnippet>1848</a>    /// enum MultipleErrors {
+<a href=#1849 id=1849 data-nosnippet>1849</a>    ///     UnitError,
+<a href=#1850 id=1850 data-nosnippet>1850</a>    ///     ErrorWithParams(bool, u8, String),
+<a href=#1851 id=1851 data-nosnippet>1851</a>    ///     ErrorWithNamedParams {
+<a href=#1852 id=1852 data-nosnippet>1852</a>    ///         status: bool,
+<a href=#1853 id=1853 data-nosnippet>1853</a>    ///         count: u8,
+<a href=#1854 id=1854 data-nosnippet>1854</a>    ///         reason: String,
+<a href=#1855 id=1855 data-nosnippet>1855</a>    ///     }
+<a href=#1856 id=1856 data-nosnippet>1856</a>    /// }
+<a href=#1857 id=1857 data-nosnippet>1857</a>    /// ```
+<a href=#1858 id=1858 data-nosnippet>1858</a>    </span>sol::sol_error_encode_derive
+<a href=#1859 id=1859 data-nosnippet>1859</a>);
+<a href=#1860 id=1860 data-nosnippet>1860</a>
+<a href=#1861 id=1861 data-nosnippet>1861</a><span class="attr">#[cfg(test)]
+<a href=#1862 id=1862 data-nosnippet>1862</a></span><span class="kw">pub use </span>contract::generate_or_err;</code></pre></div></section></main></body></html>
