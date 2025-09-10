@@ -29,11 +29,11 @@ in the ink! project’s manifest file (i.e. <code>Cargo.toml</code>).</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>ink::message_builder;
 <span class="kw">use </span>ink_env::{
+    DefaultEnvironment,
     call::{
         ExecutionInput,
         Executor,
     },
-    DefaultEnvironment,
 };
 <span class="kw">use </span>ink_primitives::{
     AccountId,
